@@ -21,3 +21,15 @@ Route::get('/', [PrincipalController::class, 'index']);
 Route::get('/sobre-nos', [SobreNosController::class, 'index']);
 
 Route::get('/contato', [ContatoController::class, 'index']);
+
+// Exemplo de passagem e tratamento de parâmetros 
+// Route::get(
+//     '/contato/{nome}/{categoriaId?}/{mensagem?}',
+//     function(
+//         string $nome,
+//         ?int $categoriaId = 1,
+//         ?string $mensagem = 'Nenhuma mensagem passada'
+//     ) {
+//         echo "<h3>Nome: $nome <br/>Categoria ID: $categoriaId <br/>Mensagem: $mensagem<h3/>";
+//     }
+// )->where(['nome' => '[A-Za-z]+', 'categoriaId' => '[0-9]+']);
