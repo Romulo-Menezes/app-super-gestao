@@ -16,15 +16,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [PrincipalController::class, 'index']);
-Route::get('/sobre-nos', [SobreNosController::class, 'index']);
-Route::get('/contato', [ContatoController::class, 'index']);
-Route::get('/login', function(){ return 'Login'; });
+Route::get('/', [PrincipalController::class, 'index'])->name('site.index');
+Route::get('/sobre-nos', [SobreNosController::class, 'index'])->name('site.sobreNos');
+Route::get('/contato', [ContatoController::class, 'index'])->name('site.contato');
+Route::get('/login', function(){ return 'Login'; })->name('site.login');
 
 Route::prefix('app')->group( function(){
-    Route::get('/clientes', function(){ return 'clientes'; });
-    Route::get('/fornecedores', function(){ return 'fornecedores'; });
-    Route::get('/produtos', function(){ return 'produtos'; }); 
+    Route::get('/clientes', function(){ return 'clientes'; })->name('app.clientes');
+    Route::get('/fornecedores', function(){ return 'fornecedores'; })->name('app.fornecedores');
+    Route::get('/produtos', function(){ return 'produtos'; })->name('app.produtos'); 
 });
 
 // Exemplo de passagem e tratamento de parâmetros 
