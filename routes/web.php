@@ -27,6 +27,10 @@ Route::prefix('app')->group( function(){
     Route::get('/produtos', function(){ return 'produtos'; })->name('app.produtos'); 
 });
 
+Route::fallback(function(){
+    echo '<h3>A rota acessada não existe! <a href="'.route('site.index').'">clique aqui</a> para voltar à página inicial.</h3>';
+});
+
 // Exemplo de passagem e tratamento de parâmetros 
 // Route::get(
 //     '/contato/{nome}/{categoriaId?}/{mensagem?}',
