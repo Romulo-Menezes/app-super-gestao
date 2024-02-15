@@ -32,26 +32,3 @@ Route::prefix('app')->group( function(){
 Route::fallback(function(){
     echo '<h3>A rota acessada não existe! <a href="'.route('site.index').'">clique aqui</a> para voltar à página inicial.</h3>';
 });
-
-// Exemplo de passagem e tratamento de parâmetros 
-// Route::get(
-//     '/contato/{nome}/{categoriaId?}/{mensagem?}',
-//     function(
-//         string $nome,
-//         ?int $categoriaId = 1,
-//         ?string $mensagem = 'Nenhuma mensagem passada'
-//     ) {
-//         echo "<h3>Nome: $nome <br/>Categoria ID: $categoriaId <br/>Mensagem: $mensagem<h3/>";
-//     }
-// )->where(['nome' => '[A-Za-z]+', 'categoriaId' => '[0-9]+']);
-
-// Exemplo de redirecionamento de rotas
-// Route::get('/rota1', function (){
-//     echo 'Rota 1';
-// })->name('site.rota1');
-
-// //Route::redirect('/rota2', 'rota1');
-
-// Route::get('/rota2', function (){
-//     return redirect()->route('site.rota1');
-// })->name('site.rota2');
