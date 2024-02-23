@@ -1,16 +1,16 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sobre nós</title>
-</head>
-<body>
-    <ul>
-        <li><a href="{{ route('site.index') }}">Principal</a></li>
-        <li><a href="{{ route('site.sobreNos') }}">Sobre nós</a></li>
-        <li><a href="{{ route('site.contato') }}">Contato</a></li>
-    </ul>
-    <h3>Sobre nós (view)</h3>
-</body>
-</html>
+@extends('site.layouts.basico')
+
+@section('titulo', 'Sobre Nós')
+@section('conteudo')
+    <div class="conteudo-pagina">
+        <div class="titulo-pagina">
+            <h1>Olá, eu sou o Super Gestão</h1>
+        </div>
+
+        <div class="informacao-pagina">
+            <p>O Super Gestão é o sistema online de controle administrativo que pode transformar e potencializar os negócios da sua empresa.</p>
+            <p>Desenvolvido com a mais alta tecnologia para você cuidar do que é mais importante, seus negócios!</p>
+        </div>  
+    </div>
+    @include('site.layouts._partials.rodape')
+@endsection

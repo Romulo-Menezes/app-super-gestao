@@ -1,16 +1,18 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contato</title>
-</head>
-<body>
-    <ul>
-        <li><a href="{{ route('site.index') }}">Principal</a></li>
-        <li><a href="{{ route('site.sobreNos') }}">Sobre nós</a></li>
-        <li><a href="{{ route('site.contato') }}">Contato</a></li>
-    </ul>
-    <h3>Contato (view)</h3>
-</body>
-</html>
+@extends('site.layouts.basico')
+
+@section('titulo', 'Contato')
+@section('conteudo')
+    <div class="conteudo-pagina">
+        <div class="titulo-pagina">
+            <h1>Entre em contato conosco</h1>
+        </div>
+
+        <div class="informacao-pagina">
+            <div class="contato-principal">
+                @component('site.layouts._components.form_contato', ['classe' => 'borda-preta'])
+                @endcomponent
+            </div>
+        </div>  
+    </div>
+    @include('site.layouts._partials.rodape')
+@endsection
