@@ -10,7 +10,7 @@
         <option value="">Qual o motivo do contato?</option>
 
         @foreach ($motivo_contatos as $key => $contato)
-           <option value="{{$key}}" {{ old('motivo_contato') == $key ? 'selected' : '' }}>{{$contato}}</option> 
+           <option value="{{$contato->id}}" {{ old('motivo_contato') == $contato->id ? 'selected' : '' }}>{{$contato->motivo_contato}}</option> 
         @endforeach
         
     </select>

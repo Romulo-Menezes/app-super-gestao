@@ -5,12 +5,12 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\SiteContato;
-use App\Enum\MotivoContatos;
+use App\Models\MotivoContato;
 
 class ContatoController extends Controller
 {
     public function index(Request $request) {
-        $motivo_contatos = MotivoContatos::cases();
+        $motivo_contatos = MotivoContato::all();
 
         return view('site.contato', ['motivo_contatos' => $motivo_contatos]);
     }
