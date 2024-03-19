@@ -1,9 +1,5 @@
 <?php
 
-use App\Http\Controllers\ContatoController;
-use App\Http\Controllers\PrincipalController;
-use App\Http\Controllers\SobreNosController;
-use App\Http\Controllers\FornecedorController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,21 +13,22 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [PrincipalController::class, 'index'])->name('site.index')->middleware('log.acesso');
+Route::get('/', 'App\Http\Controllers\PrincipalController@index')->name('site.index')->middleware('log.acesso');
 
-Route::get('/sobre-nos', [SobreNosController::class, 'index'])->name('site.sobreNos');
+Route::get('/sobre-nos', 'App\Http\Controllers\SobreNosController@index')->name('site.sobreNos');
 
-Route::get('/contato', [ContatoController::class, 'index'])->name('site.contato')->middleware('log.acesso');
+Route::get('/contato', 'App\Http\Controllers\ContatoController@index')->name('site.contato')->middleware('log.acesso');
     
-Route::post('/contato', [ContatoController::class, 'store'])->name('site.contato');
-Route::get('/login', function(){ return 'Login'; })->name('site.login');
+Route::post('/contato', 'App\Http\Controllers\ContatoController@store')->name('site.contato');
+Route::get('/login/{erro?}', 'App\Http\Controllers\LoginController@index')->name('site.login');
+Route::post('/login','App\Http\Controllers\LoginController@autenticar')->name('site.login');
 
 Route::middleware('autenticacao:padrao,visitante')
     ->prefix('app')
     ->group( 
         function(){
             Route::get('/clientes', function(){ return 'clientes'; })->name('app.clientes');
-            Route::get('/fornecedores', [FornecedorController::class, 'index'])->name('app.fornecedores');
+            Route::get('/fornecedores', 'App\Http\Controllers\FornecedorController@index')->name('app.fornecedores');
             Route::get('/produtos', function(){ return 'produtos'; })->name('app.produtos'); 
         }
     );
