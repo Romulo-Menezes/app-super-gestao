@@ -27,9 +27,11 @@ Route::middleware('autenticacao:padrao,visitante')
     ->prefix('app')
     ->group( 
         function(){
-            Route::get('/clientes', function(){ return 'clientes'; })->name('app.clientes');
-            Route::get('/fornecedores', 'App\Http\Controllers\FornecedorController@index')->name('app.fornecedores');
-            Route::get('/produtos', function(){ return 'produtos'; })->name('app.produtos'); 
+            Route::get('/home', 'App\Http\Controllers\HomeController@index')->name('app.home');
+            Route::get('/sair', 'App\Http\Controllers\LoginController@sair')->name('app.sair');
+            Route::get('/cliente', 'App\Http\Controllers\ClienteController@index')->name('app.cliente');
+            Route::get('/fornecedor', 'App\Http\Controllers\FornecedorController@index')->name('app.fornecedor');
+            Route::get('/produto', 'App\Http\Controllers\ProdutoController@index' )->name('app.produto'); 
         }
     );
 
