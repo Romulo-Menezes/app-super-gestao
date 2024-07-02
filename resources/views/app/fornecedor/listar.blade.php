@@ -44,6 +44,7 @@
                     @endforeach
                 </tbody>
             </table>
+            {{ $fornecedores->appends($request)->links('vendor.pagination.default') }}
         </div>
     </div>
 </div>
