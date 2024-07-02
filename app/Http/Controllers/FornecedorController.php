@@ -15,25 +15,25 @@ class FornecedorController extends Controller
 
     public function listar(Request $request)
     {
-        $fornecedores = Fornecedor::where('nome', 'like', '%'.$request->input('nome').'%')
-            ->where('site', 'like', '%'.$request->input('site').'%')
-            ->where('uf', 'like', '%'.$request->input('uf').'%')
-            ->where('email', 'like', '%'.$request->input('email').'%')
+        $fornecedores = Fornecedor::where('nome', 'like', '%' . $request->input('nome') . '%')
+            ->where('site', 'like', '%' . $request->input('site') . '%')
+            ->where('uf', 'like', '%' . $request->input('uf') . '%')
+            ->where('email', 'like', '%' . $request->input('email') . '%')
             ->paginate(2);
 
-        return view('app.fornecedor.listar', ['fornecedores' => $fornecedores, 'request' => $request->all() ]);
+        return view('app.fornecedor.listar', ['fornecedores' => $fornecedores, 'request' => $request->all()]);
     }
 
     public function adicionar(Request $request)
     {
         $msg = '';
 
-        if($request->input('_token') != '') {
+        if ($request->input('_token') != '') {
             $regras = [
-                'nome' => 'required|min:3|max:40', 
-                'site' => 'required|required', 
-                'uf' => 'required|min:2|max:2', 
-                'email' => 'required|email' 
+                'nome' => 'required|min:3|max:40',
+                'site' => 'required|required',
+                'uf' => 'required|min:2|max:2',
+                'email' => 'required|email'
             ];
 
             $feedback = [
@@ -50,10 +50,9 @@ class FornecedorController extends Controller
             if ($request->input('id') == '') {
                 Fornecedor::create($request->all());
                 $msg = 'Cadastro realizado com sucesso';
-
             } elseif ($request->input('id') != '') {
                 $fornecedor = Fornecedor::find($request->input('id'));
-                
+
                 if ($fornecedor->update($request->all())) {
                     $msg = 'Atualização realizada com sucesso';
                 } else {
@@ -71,5 +70,11 @@ class FornecedorController extends Controller
         $fornecedor = Fornecedor::find($id);
 
         return view('app.fornecedor.adicionar', ['fornecedor' => $fornecedor, 'msg' => $msg]);
+    }
+
+    public function excluir($id)
+    {
+        Fornecedor::find($id)->delete();
+        return redirect()->route('app.fornecedor');
     }
 }
