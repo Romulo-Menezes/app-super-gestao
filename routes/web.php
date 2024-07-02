@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProdutoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,7 +40,7 @@ Route::middleware('autenticacao:padrao,visitante')
             Route::get('/fornecedor/editar/{id}/{msg?}', 'App\Http\Controllers\FornecedorController@editar')->name('app.fornecedor.editar');
             Route::get('/fornecedor/excluir/{id}', 'App\Http\Controllers\FornecedorController@excluir')->name('app.fornecedor.excluir');
 
-            Route::get('/produto', 'App\Http\Controllers\ProdutoController@index' )->name('app.produto'); 
+            Route::resource('produto', ProdutoController::class);
         }
     );
 
