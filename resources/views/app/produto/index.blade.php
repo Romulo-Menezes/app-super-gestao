@@ -29,6 +29,7 @@
                         <th>Unidade ID</th>
                         <th></th>
                         <th></th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -38,6 +39,7 @@
                             <th>{{ $produto->descricao }}</th>
                             <th>{{ $produto->peso }}</th>
                             <th>{{ $produto->unidade_id }}</th>
+                            <th><a href="{{ route('produto.show', ['produto' => $produto->id]) }}">Visualizar</a></th>
                             <th><a href="">Editar</a></th>
                             <th><a href="">Excluir</a></th>
                         </tr>
