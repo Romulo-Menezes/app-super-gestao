@@ -14,6 +14,9 @@
                 <a href="{{ route('produto.index') }}">Voltar</a>
             </li>
             <li>
+                <a href="{{ route('produto.edit', ['produto' => $produto->id]) }}">Editar</a>
+            </li>
+            <li>
                 <a href="">Consulta</a>
             </li>
         </ul>

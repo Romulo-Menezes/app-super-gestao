@@ -24,9 +24,7 @@ class ProdutoController extends Controller
      */
     public function create()
     {
-        $unidades = Unidade::all();
-
-        return view('app.produto.create', ['unidades' => $unidades]);
+          return view('app.produto.create', ['unidades' => Unidade::all()]);
     }
 
     /**
@@ -70,7 +68,7 @@ class ProdutoController extends Controller
      */
     public function edit(Produto $produto)
     {
-        //
+        return view('app.produto.edit', ['produto' => $produto, 'unidades' => Unidade::all()]);
     }
 
     /**
@@ -78,7 +76,8 @@ class ProdutoController extends Controller
      */
     public function update(Request $request, Produto $produto)
     {
-        //
+        $produto->update($request->all());
+        return redirect()->route('produto.show', ['produto' => $produto->id]);
     }
 
     /**
