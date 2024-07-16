@@ -5,16 +5,20 @@
         <form action="{{ route('produto.store') }}" method="post">
 @endif
 @csrf
+<label for="nome">Nome</label>
 <input type="text" name="nome" value="{{ $produto->nome ?? old('nome') }}" placeholder="Nome" class="borda-preta">
 {{ $errors->has('nome') ? $errors->first('nome') : '' }}
 
+<label for="descricao">Descrição</label>
 <input type="text" name="descricao" value="{{ $produto->descricao ?? old('descricao') }}" placeholder="Descrição"
     class="borda-preta">
 {{ $errors->has('descricao') ? $errors->first('descricao') : '' }}
 
+<label for="peso">Peso</label>
 <input type="number" name="peso" value="{{ $produto->peso ?? old('peso') }}" placeholder="Peso" class="borda-preta">
 {{ $errors->has('peso') ? $errors->first('peso') : '' }}
 
+<label for="unidade_id">Unidade de Medida</label>
 <select name="unidade_id" id="">
     <option value="">-- Selecione a Unidade de Medida --</option>
 
