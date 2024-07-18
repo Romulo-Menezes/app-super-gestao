@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Produto;
 use App\Http\Controllers\Controller;
+use App\Models\Fornecedor;
 use App\Models\ProdutoDetalhe;
 use App\Models\Unidade;
 use Illuminate\Http\Request;
@@ -25,7 +26,7 @@ class ProdutoController extends Controller
      */
     public function create()
     {
-        return view('app.produto.create', ['unidades' => Unidade::all()]);
+        return view('app.produto.create', ['unidades' => Unidade::all(), 'fornecedores' => Fornecedor::all()]);
     }
 
     /**
@@ -38,6 +39,7 @@ class ProdutoController extends Controller
             'descricao' => 'required|min:3|max:2000',
             'peso' => 'required|integer',
             'unidade_id' => 'exists:unidades,id',
+            'fornecedor_id' => 'exists:produtos,id',
         ];
 
         $feedbacks = [
@@ -48,6 +50,7 @@ class ProdutoController extends Controller
             'descricao.max' => 'O campo descrição deve ter no máximo 2000 caracteres',
             'peso.integer' => 'O campo Peso deve ser um número inteiro',
             'unidade_id.exists' => 'A unidade de medida informada não existe',
+            'fornecedor_id.exists' => 'O fornecedor informado não existe',
         ];
 
         $request->validate($regras, $feedbacks);
@@ -69,7 +72,7 @@ class ProdutoController extends Controller
      */
     public function edit(Produto $produto)
     {
-        return view('app.produto.edit', ['produto' => $produto, 'unidades' => Unidade::all()]);
+        return view('app.produto.edit', ['produto' => $produto, 'unidades' => Unidade::all(), 'fornecedores' => Fornecedor::all()]);
     }
 
     /**
@@ -82,6 +85,7 @@ class ProdutoController extends Controller
             'descricao' => 'required|min:3|max:2000',
             'peso' => 'required|integer',
             'unidade_id' => 'exists:unidades,id',
+            'fornecedor_id' => 'exists:produtos,id',
         ];
 
         $feedbacks = [
@@ -92,6 +96,7 @@ class ProdutoController extends Controller
             'descricao.max' => 'O campo descrição deve ter no máximo 2000 caracteres',
             'peso.integer' => 'O campo Peso deve ser um número inteiro',
             'unidade_id.exists' => 'A unidade de medida informada não existe',
+            'fornecedor_id.exists' => 'O fornecedor informado não existe',
         ];
 
         $request->validate($regras, $feedbacks);
