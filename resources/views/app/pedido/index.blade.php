@@ -23,7 +23,7 @@
             <table border="1" width="100%">
                 <thead>
                     <tr>
-                        <th>Nome</th>
+                        <th>ID Pedido</th>
                         <th>Cliente</th>
                         <th></th>
                         <th></th>
