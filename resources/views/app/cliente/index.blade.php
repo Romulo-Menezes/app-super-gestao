@@ -33,8 +33,8 @@
                     @foreach ($clientes as $cliente)
                         <tr>
                             <th>{{ $cliente->nome }}</th>
-                            <th><a href="{{ route('cliente.show', ['produto' => $cliente->id]) }}">Visualizar</a></th>
-                            <th><a href="{{ route('cliente.edit', ['produto' => $cliente->id]) }}">Editar</a></th>
+                            <th><a href="{{ route('cliente.show', ['cliente' => $cliente->id]) }}">Visualizar</a></th>
+                            <th><a href="{{ route('cliente.edit', ['cliente' => $cliente->id]) }}">Editar</a></th>
                             <th>
                                 <form id="form_{{$cliente->id}}" action="{{ route('cliente.destroy', ['cliente' => $cliente->id]) }}" method="post">
                                     @csrf
