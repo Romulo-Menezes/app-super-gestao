@@ -45,11 +45,11 @@ jobs:
 
       - name: Create SQLite database
         run: |
-        mkdir -p database
-        touch database/database.sqlite
+          mkdir -p database
+          touch database/database.sqlite
 
-    - name: Run migrations
-      run: php artisan migrate --force
+      - name: Run migrations
+        run: php artisan migrate --force
 
       - name: Execute tests
         run: vendor/bin/phpunit
