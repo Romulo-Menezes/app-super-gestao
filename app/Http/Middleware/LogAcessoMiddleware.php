@@ -20,7 +20,7 @@ class LogAcessoMiddleware
         $rota = $request->getRequestUri();
         LogAcesso::create(['log' => "IP $ip requisitou a rota $rota"]);
         $resposta = $next($request);
-        $resposta->setStatusCode(201, 'O status da respsota e o texto da respsota foram modificados!!');
+        $resposta->setStatusCode(200, 'O status da respsota e o texto da respsota foram modificados!!');
         return $resposta;
     }
 }
