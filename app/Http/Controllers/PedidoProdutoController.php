@@ -1,0 +1,97 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Http\Controllers\Controller;
+use App\Models\Pedido;
+use App\Models\PedidoProduto;
+use App\Models\Produto;
+use Illuminate\Http\Request;
+
+class PedidoProdutoController extends Controller
+{
+    /**
+     * Display a listing of the resource.
+     */
+    public function index()
+    {
+        //
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function create(Pedido $pedido)
+    {
+        $produtos = Produto::all();
+        return view('app.pedido_produto.create', ['pedido' => $pedido, 'produtos' => $produtos]);
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store(Request $request, Pedido $pedido)
+    {
+        $regras = [
+            'produto_id' => 'exists:produtos,id',
+            'quantidade' => 'required|min_digits:1'
+        ];
+        $feedback = [
+            'produto_id.exists' => 'O produto informado não existe',
+            'quantidade.required' => 'O campo Quantidade é obrigatório',
+            'quantidade.min_digits' => 'O valor mínimo do campo Quantidade é 1',
+        ];
+        $request->validate($regras, $feedback);
+
+        /*$pedidoProduto = new PedidoProduto();
+        $pedidoProduto->pedido_id = $pedido->id;
+        $pedidoProduto->produto_id = $request->get('produto_id');
+        $pedidoProduto->save();*/
+
+        $pedido->produtos()->attach(
+            $request->get('produto_id'),
+            ['quantidade' => $request->get('quantidade')]
+        );
+
+        return redirect()->route('pedido-produto.create', ['pedido' => $pedido->id]);
+    }
+
+    /**
+     * Display the specified resource.
+     */
+    public function show(string $id)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(string $id)
+    {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request, string $id)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(PedidoProduto $pedidoProduto)
+    {
+        //Convencional
+        /*PedidoProduto::where(['pedido_id' => $pedido->id, 'produto_id' => $produto->id])->delete();*/
+
+        //Detach
+        /*$pedido->produtos()->detach($produto->id);*/
+        $pedido = $pedidoProduto->pedido_id;
+        $pedidoProduto->delete();
+        return redirect()->route('pedido-produto.create', ['pedido' => $pedido]);
+    }
+}
