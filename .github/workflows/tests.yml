@@ -43,9 +43,11 @@ jobs:
         run: php artisan key:generate
 
       - name: Create SQLite database
-        run: |
-          mkdir -p database
-          touch database/database.sqlite
+      - uses: actions/checkout@v3
+      - uses: actions/setup-sqlite@v1
+        with:
+          sqlite-version: 3.40.0
+          sqlite-year: 2022
 
       - name: Run migrations
         run: php artisan migrate --force
