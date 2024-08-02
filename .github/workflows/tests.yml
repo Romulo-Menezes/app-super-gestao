@@ -50,5 +50,11 @@ jobs:
       - name: Run migrations
         run: php artisan migrate --force
 
+      - name: Migrations status
+        run: php artisan migrate:status
+
       - name: Execute tests
+        env:
+          DB_CONNECTION: sqlite
+          DB_DATABASE: database/database.sqlite
         run: vendor/bin/phpunit
